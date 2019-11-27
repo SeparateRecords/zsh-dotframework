@@ -11,7 +11,7 @@ execute it.  Running the commands below will work.  Alternatively, copy and
 paste this script's contents into your shell session.
 
     $ curl -sSL \
-        https://raw.githubusercontent.com/SeparateRecords/zsh-dotframework/master/setup.zsh/ \
+        https://raw.githubusercontent.com/SeparateRecords/zsh-dotframework/master/setup.zsh \
         -o ~/Downloads/df-setup
     $ . ~/Downloads/df-setup
     $ rm ~/Downloads/df-setup
