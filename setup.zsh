@@ -91,6 +91,7 @@ title "Creating new shim at $HOME/.zshrc"
 cat << EOF > $HOME/.zshrc
 # This file has been created automatically by the dotframework setup script.
 export ZSH_CONFIG_DIR="$zshconfig"
+
 if [[ -f "\$ZSH_CONFIG_DIR/.framework/orchestrate.zsh" ]]; then
     source "\$ZSH_CONFIG_DIR/.framework/orchestrate.zsh"
 else
@@ -98,9 +99,9 @@ else
     printf "dotframework: Unable to find orchestration script.\n"
     printf "\n"
 fi
-# Anything below this should be moved to a script in the init directory.
-# $ZSH_CONFIG_DIR/init.d
 
+# Anything below this should be moved to a script in the init directory.
+# $zshconfig/init.d
 
 EOF
 
