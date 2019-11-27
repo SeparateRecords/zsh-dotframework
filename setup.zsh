@@ -68,7 +68,7 @@ touch init_{setup,teardown}.zsh
 title "Cloning framework to $zshconfig/.framework"
 # The repo contains the orchestrate script and function library.
 # These will need to be in place so that things actually function.
-git clone -v https://github.com/SeparateRecords/zsh-dotframework .framework
+git clone https://github.com/SeparateRecords/zsh-dotframework .framework
 
 
 title "Moving old ZSH init"
