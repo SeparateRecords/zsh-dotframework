@@ -112,7 +112,7 @@ title "Creating dotfiles repository"
 git init
 cat << EOF > .gitignore
 .framework/
-.DS_Store
+**/.DS_Store
 EOF
 
 
