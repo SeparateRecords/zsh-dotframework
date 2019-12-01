@@ -106,10 +106,8 @@ fi
 EOF
 
 
-title "Creating dotfiles repository"
-# To back up the init scripts, automatically create a repo in the
-# directory, and add a gitignore with some logical defaults.
-git init
+title "Creating gitignore"
+# Add a gitignore with some logical defaults.
 cat << EOF > .gitignore
 .framework/
 **/.DS_Store
