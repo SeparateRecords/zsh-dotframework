@@ -20,7 +20,7 @@ The installation directory respects your XDG_CONFIG_DIR.  The default can
 be overridden by setting ZSH_CONFIG_DIR before running the script, althrough
 in most cases you won't need to.
 
-    $ ZSH_CONFIG_DIR=~/.zsh_init ./Downloads/df-setup
+    $ ZSH_CONFIG_DIR=~/.zsh_init . ./Downloads/df-setup
 
 Also note:
 o   If neither ZSH_CONFIG_DIR or XDG_CONFIG_DIR are set, the default path is
@@ -51,21 +51,21 @@ fi
 
 
 title "Determining ZSH configuration location"
-# Set the installation directory using parameter substitution
-zshconfig=${ZSH_CONFIG_DIR:-${XDG_CONFIG_DIR:-"$HOME/.config"}/zsh}
-echo "$zshconfig"
+# Set the installation directory using parameter substitution.
+# See setup instructions for information on variable preference order.
+echo ${ZSH_CONFIG_DIR:=${XDG_CONFIG_DIR:-"$HOME/.config"}/zsh}
 
 
-title "Creating config structure in $zshconfig"
+title "Creating config structure in $ZSH_CONFIG_DIR"
 # Create the directories and push the new config dir to the stack.
 # All sections below can assume the CWD is the config dir.
-$mkdir -pv "$zshconfig"
-pushd "$zshconfig" >/dev/null
+$mkdir -pv "$ZSH_CONFIG_DIR"
+pushd "$ZSH_CONFIG_DIR" >/dev/null
 $mkdir -pv bin init.d
 touch init_{setup,teardown}.zsh
 
 
-title "Cloning framework to $zshconfig/.framework"
+title "Cloning framework to $ZSH_CONFIG_DIR/.framework"
 # The repo contains the orchestrate script and function library.
 # These will need to be in place so that things actually function.
 git clone https://github.com/SeparateRecords/zsh-dotframework .framework
@@ -90,7 +90,7 @@ title "Creating new shim at $HOME/.zshrc"
 # run, and will always be run last.
 cat << EOF > $HOME/.zshrc
 # This file has been created automatically by the dotframework setup script.
-export ZSH_CONFIG_DIR="$zshconfig"
+export ZSH_CONFIG_DIR="$ZSH_CONFIG_DIR"
 
 if [[ -f "\$ZSH_CONFIG_DIR/.framework/orchestrate.zsh" ]]; then
     source "\$ZSH_CONFIG_DIR/.framework/orchestrate.zsh"
@@ -101,7 +101,7 @@ else
 fi
 
 # Anything below this should be moved to a script in the init directory.
-# $zshconfig/init.d
+# $ZSH_CONFIG_DIR/init.d
 
 EOF
 
