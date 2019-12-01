@@ -37,3 +37,8 @@ file_at() {
 dir_at() {
     [[ -d $1 ]]
 }
+
+# Usage:  terminal_is [names...]
+terminal_is() {
+    [[ ${@[(i)$TERM_PROGRAM]} -le ${#@} ]]
+}

@@ -99,3 +99,13 @@ if file_at ~/.config/zsh/init_setup.zsh; then
     # ...
 fi
 ```
+
+### **terminal_is** _\<name\>_
+
+Check if the terminal is one of the specified program names.
+
+```zsh
+if terminal_is Hyper vscode; then
+    # ...
+fi
+```
