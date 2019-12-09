@@ -13,14 +13,16 @@ has() {
 }
 
 
-# Usage:  on <operating_system>
+# Usage:  on [operating_system]...
 on() {
-    local expected="$1:l"
-    if [[ $expected == macos ]] || [[ $expected == osx ]]; then
-        expected="darwin"
-    fi
-    local os=$(uname)
-    [[ $os:l == $expected ]]
+    for name in $@; do
+        local expected="$name:l"
+        if [[ $expected == macos ]] || [[ $expected == osx ]]; then
+            expected="darwin"
+        fi
+        local os=$(uname)
+        [[ $os:l == $expected ]]
+    done
 }
 
 # Usage:  currently <message>
