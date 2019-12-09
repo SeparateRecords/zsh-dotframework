@@ -96,7 +96,7 @@ if [[ -f "\$ZSH_CONFIG_DIR/.framework/orchestrate.zsh" ]]; then
     source "\$ZSH_CONFIG_DIR/.framework/orchestrate.zsh"
 else
     printf "\$(tput setaf 1)Error:\$(tput sgr0) "
-    printf "dotframework: Unable to find orchestration script.\n"
+    printf "dotframework: Can't to find the orchestration script.\n"
     printf "\n"
 fi
 
