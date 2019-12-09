@@ -8,6 +8,14 @@ This init framework provides a small library of functions that help keep your sc
 
 See the heredoc at the top of [setup.zsh](https://github.com/SeparateRecords/zsh-dotframework/blob/master/setup.zsh) for instructions on how to set it up.
 
+### Updating
+
+Once installed, because the framework itself is a git repository, all you need to do is pull.
+
+```console
+$ git -C $ZSH_CONFIG_DIR/.framework pull
+```
+
 ## Structure
 
 1. Source `$ZSH_CONFIG_DIR/init_setup.zsh`, if it exists
