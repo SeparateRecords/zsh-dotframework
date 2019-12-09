@@ -10,8 +10,7 @@ dotframework::error() {
 source "$ZSH_CONFIG_DIR/.framework/lib.zsh"
 
 # Check that all the requirements are met before proceeding.
-# Requirements are any executables that aren't ZSH builtins that must be used
-# at some point in the framework.
+# Requirements are any executables used that aren't builtins.
 # The requirements are arguments to this anonymous function.
 function {
     has $@ || dotframework::error "Requires ${(j:, :)@}."
