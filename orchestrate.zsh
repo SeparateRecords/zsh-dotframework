@@ -1,7 +1,7 @@
 # Touching this file risks messing up your shell.
 # Play with it at your own risk!
 
-dotframework::error() {
+dotframework::__error() {
     printf "$(tput setaf 1)Error:$(tput sgr0) dotframework: $@\n\n"
     return 1
 }
@@ -13,7 +13,7 @@ source "$ZSH_CONFIG_DIR/.framework/lib_init.zsh"
 # Requirements are any executables used that aren't builtins.
 # The requirements are arguments to this anonymous function.
 function {
-    has $@ || dotframework::error "Requires ${(j:, :)@}."
+    has $@ || dotframework::__error "Requires ${(j:, :)@}."
 } grep sed tr uniq || return 1
 
 # Add user binaries to path
@@ -45,4 +45,4 @@ unfunction $(\
 )
 
 # Remove internal functions
-unfunction dotframework::error
+unfunction dotframework::__error
