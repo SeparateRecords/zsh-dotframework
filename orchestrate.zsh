@@ -7,7 +7,7 @@ dotframework::error() {
 }
 
 # Add the functions
-source "$ZSH_CONFIG_DIR/.framework/lib.zsh"
+source "$ZSH_CONFIG_DIR/.framework/lib_init.zsh"
 
 # Check that all the requirements are met before proceeding.
 # Requirements are any executables used that aren't builtins.
@@ -38,7 +38,7 @@ fi
 
 # Remove all functions defined in lib.zsh
 unfunction $(\
-    grep ".*() {" "$ZSH_CONFIG_DIR/.framework/lib.zsh" \
+    grep ".*() {" "$ZSH_CONFIG_DIR/.framework/lib_init.zsh" \
     | sed "s/^function[[:space:]]//g" \
     | tr -d "() {" \
     | uniq \
