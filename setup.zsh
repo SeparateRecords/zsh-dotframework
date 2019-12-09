@@ -109,8 +109,15 @@ EOF
 title "Creating gitignore"
 # Add a gitignore with some logical defaults.
 cat << EOF > .gitignore
+# Don't track the framework
 .framework/
+
+# System files
 **/.DS_Store
+
+# User configuration
+**/*secrets.zsh
+
 EOF
 
 
