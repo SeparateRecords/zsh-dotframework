@@ -7,9 +7,14 @@ is() {
     [[ -o $1:u ]]
 }
 
-# Usage:  has <command>
+# Usage:  has [command]...
 has() {
-    command -v $1 >/dev/null 2>&1
+    for cmd in $@; do
+        if ! command -v "$cmd" >/dev/null 2>&1; then
+            return 1
+        fi
+    done
+    return 0
 }
 
 
