@@ -10,7 +10,7 @@ is() {
 # Usage:  has [command]...
 has() {
     for cmd in $@; do
-        if ! command -v "$cmd" >/dev/null 2>&1; then
+        if (( ! $+commands[$cmd] )); then
             return 1
         fi
     done
