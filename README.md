@@ -26,7 +26,7 @@ The directory containing your configuration. By default, `~/.config/zsh`.
 
 These functions are **only** accessible in your init scripts and exist purely for readability and maintenance.
 
-### **is** _\<flag\>_
+### **is** _flag_
 
 Check whether a flag is set.
 
@@ -38,10 +38,11 @@ if is interactive; then
 fi
 ```
 
-### **on** _\<operating\_system\>_
+### **on** _operating\_system..._
 
-Returns 0 if the argument is the same as the operating system.
-Always case insensitive.
+Returns 0 if on any of the specified operating systems. Always case insensitive.
+
+This function relies on `uname` being present. If it isn't, it will always return 1.
 
 "macos" and "osx" are aliases for "Darwin"
 
@@ -53,9 +54,9 @@ elif on linux; then
 fi
 ```
 
-### **has** _\<command\>_
+### **has** _command..._
 
-Check if a command is available.
+Check if all of the specified commands are available.
 
 ```zsh
 if on macOS && has guname; then
@@ -65,7 +66,7 @@ else
 fi
 ```
 
-### **currently** _\<message\>_
+### **currently** _message_
 
 A dummy function that can be redefined later. Used to display a message.
 
@@ -80,7 +81,7 @@ fi
 currently "sourcing plugins"
 ```
 
-### **dir_at** _\<path\>_
+### **dir_at** _path_
 
 Check if a path is a directory.
 
@@ -90,7 +91,7 @@ if dir_at ~/.config; then
 fi
 ```
 
-### **file_at** _\<path\>_
+### **file_at** _path_
 
 Check if a path is a file.
 
@@ -100,7 +101,7 @@ if file_at ~/.config/zsh/init_setup.zsh; then
 fi
 ```
 
-### **terminal_is** _\<name\>_
+### **terminal_is** _name_
 
 Check if the terminal is one of the specified program names.
 
