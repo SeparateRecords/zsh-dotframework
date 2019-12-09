@@ -19,16 +19,22 @@ has() {
 
 
 # Usage:  on [operating_system]...
-on() {
-    for name in $@; do
-        local expected="$name:l"
-        if [[ $expected == macos ]] || [[ $expected == osx ]]; then
-            expected="darwin"
-        fi
-        local os=$(uname)
-        [[ $os:l == $expected ]]
-    done
-}
+if has uname; then
+    on() {
+        for name in $@; do
+            local expected="$name:l"
+            if [[ $expected == macos ]] || [[ $expected == osx ]]; then
+                expected="darwin"
+            fi
+            local os=$(uname)
+            [[ $os:l == $expected ]]
+        done
+    }
+else
+    on() {
+        return 1
+    }
+fi
 
 # Usage:  currently <message>
 currently() {

@@ -25,8 +25,11 @@ if file_at "$ZSH_CONFIG_DIR/init_teardown.zsh"; then
 fi
 
 # Remove all functions defined in lib.zsh
-unfunction $(\
-    grep ".*() {" "$ZSH_CONFIG_DIR/.framework/lib.zsh" \
-    | sed "s/^function[[:space:]]//g" \
-    | tr -d "() {" \
-)
+if has grep sed tr uniq; then
+    unfunction $(\
+        grep ".*() {" "$ZSH_CONFIG_DIR/.framework/lib.zsh" \
+        | sed "s/^function[[:space:]]//g" \
+        | tr -d "() {" \
+        | uniq \
+    )
+fi
