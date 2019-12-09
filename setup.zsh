@@ -115,7 +115,7 @@ cat << EOF > .gitignore
 **/.DS_Store
 
 # User configuration
-**/*secrets.zsh
+**/*secret*.zsh
 
 EOF
 
