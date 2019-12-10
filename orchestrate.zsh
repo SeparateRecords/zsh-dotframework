@@ -19,7 +19,8 @@ function {
 # Add user binaries to path
 # These can be used during setup, because PATH is guaranteed
 # to contain the bin directory already.
-export PATH="$ZSH_CONFIG_DIR/bin:$PATH"
+# NOTE: Deprecated, use ~/bin or ~/.local/bin instead.
+[[ -d $ZSH_CONFIG_DIR/bin ]] && export PATH="$ZSH_CONFIG_DIR/bin:$PATH"
 
 # Source init_setup if it exists
 if file_at "$ZSH_CONFIG_DIR/init_setup.zsh"; then

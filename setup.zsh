@@ -61,7 +61,7 @@ title "Creating config structure in $ZSH_CONFIG_DIR"
 # All sections below can assume the CWD is the config dir.
 $mkdir -pv "$ZSH_CONFIG_DIR"
 pushd "$ZSH_CONFIG_DIR" >/dev/null
-$mkdir -pv bin init.d
+$mkdir -pv init.d
 touch init_{setup,teardown}.zsh
 
 
