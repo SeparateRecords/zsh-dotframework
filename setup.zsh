@@ -1,30 +1,24 @@
 #!/usr/bin/env zsh
 : << 'FinishSetupInstructions'
 ---===≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡===---
-Hello reader,
-    As you're undoubtedly well aware, running arbitrary code is not a secure
-practice.  I made you open this file to read the instructions so that
-there's more of an incentive to *actually* read what you'll be executing, to
-see what it does, and make sure you're alright with it.
-    Additionally, there is no "easy install" - you download this script and
-execute it.  Running the commands below will work.  Alternatively, copy and
-paste this script's contents into your shell session.
+There's no "easy install", running arbitrary code is insecure.
+You should read of this file and make sure you're okay with what it does.
+Sections are titled and commented to make it easier.
+Once you've done that, you can run the commands below, which will download the
+script and run it. No wizardry.
 
-    $ curl -sSL \
-        https://raw.githubusercontent.com/SeparateRecords/zsh-dotframework/master/setup.zsh \
-        -o ~/Downloads/df-setup
-    $ . ~/Downloads/df-setup
-    $ rm ~/Downloads/df-setup
+$ curl -sSL \
+    https://raw.githubusercontent.com/SeparateRecords/zsh-dotframework/master/setup.zsh \
+    -o ~/Downloads/df-setup
+$ . ~/Downloads/df-setup
+$ rm ~/Downloads/df-setup
 
-The installation directory respects your XDG_CONFIG_DIR.  The default can
-be overridden by setting ZSH_CONFIG_DIR before running the script, althrough
-in most cases you won't need to.
+The script will install to ~/.config/zsh (or $XDG_CONFIG_DIR/zsh if set), but
+this can be overridden by setting ZSH_CONFIG_DIR. Intermediate directories
+will be created as needed.
 
-    $ ZSH_CONFIG_DIR=~/.zsh_init . ./Downloads/df-setup
+$ ZSH_CONFIG_DIR=~/zsh . ~/Downloads/df-setup
 
-Also note:
-o   If neither ZSH_CONFIG_DIR or XDG_CONFIG_DIR are set, the default path is
-    ~/.config/zsh
 FinishSetupInstructions
 
 
@@ -33,17 +27,15 @@ FinishSetupInstructions
 
 # Display a bold and green title in the terminal, then reset colors
 title() {
-    tput bold && tput setaf 2
-    echo "[$1]"
-    tput sgr0
+    printf "[$(tput bold)$(tput setaf 2)${1}$(tput sgr0)]\n"
 }
 
 # On macOS, `mkdir -p` breaks `mkdir -v`, despite it working in GNU
 # extensions. Thanks, Apple. If GNU Coreutils mkdir is available,
 # use it instead.
-mkdir="mkdir"
-if [[ $(uname) == Darwin ]] && (( ${+commands[gmkdir]} )); then
-    mkdir="gmkdir"
+if [[ $(uname) == Darwin ]] && (( ${+commands[gmkdir]} ))
+then mkdir="gmkdir"
+else mkdir="mkdir"
 fi
 
 
@@ -75,10 +67,10 @@ title "Moving old ZSH init"
 # The files that would normally run will need to be moved.
 # If the file exists, move it to its new home.
 pushd init.d >/dev/null
-[[ -f "$HOME/.zshrc" ]] && mv -v "$HOME/.zshrc" rc.zsh
-[[ -f "$HOME/.zshenv" ]] && mv -v "$HOME/.zshenv" env.zsh
-[[ -f "$HOME/.zlogin" ]] && mv -v "$HOME/.zlogin" login.zsh
-[[ -f "$HOME/.zprofile" ]] && mv -v "$HOME/.zprofile" profile.zsh
+[[ -f "$HOME/.zshrc" ]] && mv -v "$HOME/.zshrc" "rc.zsh"
+[[ -f "$HOME/.zshenv" ]] && mv -v "$HOME/.zshenv" "env.zsh"
+[[ -f "$HOME/.zlogin" ]] && mv -v "$HOME/.zlogin" "login.zsh"
+[[ -f "$HOME/.zprofile" ]] && mv -v "$HOME/.zprofile" "profile.zsh"
 popd
 
 
@@ -106,16 +98,23 @@ EOF
 
 
 title "Creating gitignore"
-# Add a gitignore with some logical defaults.
+# Add a gitignore with some sensible defaults.
 cat << EOF > .gitignore
+# User configuration
+init.d/*secret*.zsh
+
 # Don't track the framework
 .framework/
 
 # System files
 **/.DS_Store
-
-# User configuration
-**/*secret*.zsh
+._*
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.Trash-*
+*~
 
 EOF
 
