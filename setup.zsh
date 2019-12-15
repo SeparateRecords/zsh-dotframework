@@ -100,10 +100,10 @@ EOF
 title "Creating gitignore"
 # Add a gitignore with some sensible defaults.
 cat << EOF > .gitignore
-# User configuration
-init.d/*secret*.zsh
+# Don't track secret files
+init.d/*[Ss][Ee][Cc][Rr][Ee][Tt]*.zsh
 
-# Don't track the framework
+# Don't track the framework itself
 .framework/
 
 # System files
