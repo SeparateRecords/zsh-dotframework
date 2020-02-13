@@ -2,7 +2,7 @@
 : << 'FinishSetupInstructions'
 ---===≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡===---
 There's no "easy install", running arbitrary code is insecure.
-You should read of this file and make sure you're okay with what it does.
+You should read this file and make sure you're okay with what it does.
 Sections are titled and commented to make it easier.
 Once you've done that, you can run the commands below, which will download the
 script and run it. No wizardry.
